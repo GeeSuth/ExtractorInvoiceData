@@ -18,7 +18,7 @@ Extractor PDF Invoice Details @ .NET6
    "ItemsCount":16,
    "ItemsQty":110.0,
    "InvoiceNote":null,
-   "InvoiceVatNo":"311380947100003",
+   "InvoiceVatNo":"311380xxxx00003",
    "InvoiceTotal":7770.00,
    "InvoiceTotalVat":1165.50,
    "Items":[
@@ -201,9 +201,9 @@ Extractor PDF Invoice Details @ .NET6
    ],
    "Person":{
       "PersonName":null,
-      "PersonPhone":"0546714207",
+      "PersonPhone":"0546xxxx07",
       "PersonAddress":null,
-      "PersonVatNo":"311380947100003"
+      "PersonVatNo":"311380xxxx00003"
    },
    "CreatorInfo":null
 }
