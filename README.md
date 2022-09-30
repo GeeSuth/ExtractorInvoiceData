@@ -259,6 +259,7 @@ new RegexPatterns()
 |:heavy_check_mark: | Create web test ASP.NET Core |
 |:x: | Support analyze image invoice |
 |:x: | Improve Identify of invoice |
+|:x: | Publish web project to internet and make it accessible  |
 
 [comment]: <> (substr | :heavy_check_mark: |  :white_check_mark: | :heavy_check_mark:)
 
