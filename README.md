@@ -246,16 +246,19 @@ new RegexPatterns()
 
 ### Roadmap :
 
-:heavy_check_mark: Init Library
-:heavy_check_mark: Finish Text Analyze use ITextSharp
-:heavy_check_mark: Can use custom regex to analyze invoice
-:heavy_check_mark: Add default values to analyze
-:heavy_minus_sign: Support right to left
-:x: return creator Info of invoice
-:heavy_check_mark: Create Xunit Test
-:heavy_check_mark: Create web test ASP.NET Core
-:x: Support analyze image invoice
-:x: Improve Identify of invoice 
+
+| State | Task |
+| ----- | ---- |
+|:heavy_check_mark: |  Init Library    |
+|:heavy_check_mark: | Finish Text Analyze use ITextSharp |
+|:heavy_check_mark: | Can use custom regex to analyze invoice |
+|:heavy_check_mark: | Add default values to analyze |
+|:heavy_minus_sign: | Support right to left |
+|:x: | return creator Info of invoice |
+|:heavy_check_mark: | Create Xunit Test |
+|:heavy_check_mark: | Create web test ASP.NET Core |
+|:x: | Support analyze image invoice |
+|:x: | Improve Identify of invoice |
 
 [comment]: <> (substr | :heavy_check_mark: |  :white_check_mark: | :heavy_check_mark:)
 
