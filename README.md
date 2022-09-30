@@ -213,7 +213,7 @@ Extractor PDF Invoice Details @ .NET6
 ## Use :
 
 ##### DI :
-```c
+```csharp
 using GeeSuthSoft.ToolKit.Pdf.Extensions;
 builder.Services.AddToolKitPdfRegisterService();
 ```
@@ -221,7 +221,7 @@ builder.Services.AddToolKitPdfRegisterService();
 
 ##### Method :
 
-```c
+```csharp
 async Task<string> ReadInvoiceStringAsync(string fileName)
 async Task<Invoice> ReadInvoiceAsync(string filePath, RegexPatterns regexPatterns, List<string>? NotInterestedValues = null)
 async Task<string> ReadInvoiceJsonAsync(Stream stream, RegexPatterns regexPatterns, List<string>? NotInterestedValues = null)
@@ -231,7 +231,7 @@ async Task<Invoice> ReadInvoiceAsync(string filePath, List<string>? NotIntereste
 
 ##### Custom Regex :
 
-```c
+```csharp
 new RegexPatterns()
             {
                 RegexPatternForDates="",
