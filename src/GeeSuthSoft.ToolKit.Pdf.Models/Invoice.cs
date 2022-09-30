@@ -10,18 +10,18 @@ public class Invoice
         Items = new List<InvoiceItem>();
     }
     public string? InvoiceCode { get; set; }
-    public DateTime InvoiceDate { get; set; }
+    public string InvoiceDate { get; set; }
 
-    public int ItemsCount { get; set; }
+    public int ItemsCount { get => this.Items.Count; }
 
-    public decimal? ItemsQty { get; set; }
+    public decimal? ItemsQty { get => this.Items.Sum(s=>s.Qty); }
     public string? InvoiceNote { get; set; }
 
-    public string? InvoiceVatNo { get; set; }
+    public string? InvoiceVatNo { get => this.Person.PersonVatNo; }
     
-    public string? InvoiceTotal { get; set; }
+    public decimal? InvoiceTotal { get => this.Items.Sum(s=>s.UnitTotal);  }
 
-    public string? InvoiceTotalVat { get; set; }
+    public decimal? InvoiceTotalVat { get => this.Items.Sum(s=>s.UnitVatAmount); }
 
     public List<InvoiceItem>? Items { get; set; }
 

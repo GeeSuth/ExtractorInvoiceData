@@ -8,32 +8,34 @@ namespace GeeSuthSoft.ToolKit.Pdf;
 
 public class ReaderWorker
 {
-    public async Task<Invoice> GetInvoice(Stream stream)
+
+    private readonly ReaderWorkerBase _readerWorkderBase = new();
+    
+    public async Task<Invoice> GetInvoiceAsync(Stream stream , List<string>? NotInterested = null)
     {
         var result = new Models.Invoice();
         try
         {
-            var pdfDocument = new iText.Kernel.Pdf.PdfDocument(new PdfReader(stream));
-	        StringBuilder processed = new StringBuilder();
-	        var strategy = new LocationTextExtractionStrategy();
-	        string text = "";
-	        for (int i = 1; i <= pdfDocument.GetNumberOfPages(); ++i)
-	        {
-	            var page = pdfDocument.GetPage(i);
-	            text += PdfTextExtractor.GetTextFromPage(page, strategy);
-	            processed.Append(text);
-	        }
-	        //var lines= text.Split('\n');
+            var text = await _readerWorkderBase.ReadInvoiceBase(stream);
 
-            if(await AnalyzeText.IsInvoice(text))
+            var analayze = new AnalyzeText(NotInterested);
+
+            if(await analayze.IsInvoice(text))
             {
                 // Date
-                var date = await AnalyzeText.GetDates(text);
-                result.InvoiceDate = DateTime.Parse(date[0]);
+                var date = analayze.GetDates(text);
+                result.InvoiceDate =date[0];
 
 
+                // Get Person Info 
+                result.Person = await analayze.GetPersonInfo(text);
 
-                //
+                // Items 
+                result.Items = await analayze.GetItems(text);
+            }
+            else
+            {
+                return null;
             }
 
         }
@@ -44,4 +46,50 @@ public class ReaderWorker
 
         return result;
     }
+
+
+    public async Task<Invoice> GetInvoiceAsync(Stream stream, RegexPatterns regexPatterns, List<string>? NotInterested = null)
+    {
+        var result = new Models.Invoice();
+        try
+        {
+            var text = await _readerWorkderBase.ReadInvoiceBase(stream);
+
+            var analayze = new AnalyzeText(regexPatterns , NotInterested);
+
+            if (await analayze.IsInvoice(text))
+            {
+                // Date
+                var date = analayze.GetDates(text);
+                result.InvoiceDate = date[0];
+
+
+                // Get Person Info 
+                result.Person = await analayze.GetPersonInfo(text);
+
+                // Items 
+                result.Items = await analayze.GetItems(text);
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+        catch (Exception ex)
+        {
+
+        }
+
+        return result;
+    }
+
+
+    public async Task<string> GetInvoiceStringAsync(Stream stream)
+    {
+        return await _readerWorkderBase.ReadInvoiceBase(stream);
+    }
+
+
+
 }

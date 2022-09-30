@@ -1,0 +1,13 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1>Upload PDF Invoice :</h1>
+    <form method="post" action="/upload" enctype="multipart/form-data">
+        <input type="file" name="file" >
+        <input type="submit" value="upload!" />
+    </form>
+</div>
