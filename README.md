@@ -222,10 +222,10 @@ builder.Services.AddToolKitPdfRegisterService();
 ##### Method :
 
 ```csharp
-async Task<string> ReadInvoiceStringAsync(string fileName)
-async Task<Invoice> ReadInvoiceAsync(string filePath, RegexPatterns regexPatterns, List<string>? NotInterestedValues = null)
-async Task<string> ReadInvoiceJsonAsync(Stream stream, RegexPatterns regexPatterns, List<string>? NotInterestedValues = null)
-async Task<Invoice> ReadInvoiceAsync(string filePath, List<string>? NotInterested = null)
+async Task<string> ReadInvoiceStringAsync(string fileName);
+async Task<Invoice> ReadInvoiceAsync(string filePath, RegexPatterns regexPatterns, List<string>? NotInterestedValues = null);
+async Task<string> ReadInvoiceJsonAsync(Stream stream, RegexPatterns regexPatterns, List<string>? NotInterestedValues = null);
+async Task<Invoice> ReadInvoiceAsync(string filePath, List<string>? NotInterested = null);
 ```
 
 
