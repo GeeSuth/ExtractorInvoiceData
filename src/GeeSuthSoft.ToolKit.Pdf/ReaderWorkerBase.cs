@@ -16,28 +16,31 @@ namespace GeeSuthSoft.ToolKit.Pdf
 
             try
             {
-                var pdfDocument = new iText.Kernel.Pdf.PdfDocument(new PdfReader(stream));
-                StringBuilder processed = new StringBuilder();
-                var strategy = new LocationTextExtractionStrategy();
-                //strategy.SetRightToLeftRunDirection(true);
-                strategy.SetUseActualText(true);
-                string text = "";
-                for (int i = 1; i <= pdfDocument.GetNumberOfPages(); ++i)
+
+                return await Task.Run(() =>
                 {
-                    var page = pdfDocument.GetPage(i);
-                    text += PdfTextExtractor.GetTextFromPage(page, strategy);
-                    processed.Append(text);
-                }
+                    var pdfDocument = new iText.Kernel.Pdf.PdfDocument(new PdfReader(stream));
+                    StringBuilder processed = new StringBuilder();
+                    var strategy = new LocationTextExtractionStrategy();
+                    //strategy.SetRightToLeftRunDirection(true);
+                    strategy.SetUseActualText(true);
+                    string text = "";
+                    for (int i = 1; i <= pdfDocument.GetNumberOfPages(); ++i)
+                    {
+                        var page = pdfDocument.GetPage(i);
+                        text += PdfTextExtractor.GetTextFromPage(page, strategy);
+                        processed.Append(text);
+                    }
 
 
-                return text;
+                    return Task.FromResult<string>(text);
+                });
 
-
-
+                
             }
-            catch (Exception ex)
+            catch
             {
-                return null;
+                return await Task.FromResult(string.Empty);
             }
         }
 
